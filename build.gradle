@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        google()
+        gradlePluginPortal()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.2.0-beta04"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.38.1"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://maven.google.com" }
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
