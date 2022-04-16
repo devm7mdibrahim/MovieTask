@@ -33,4 +33,46 @@ class MoviesViewModel @Inject constructor(
                 }.launchIn(viewModelScope)
         }
     }
+
+    private val _topRatedMoviesResponse =
+        MutableStateFlow<DataState<MoviesResponse>>(DataState.Idle)
+    val topRatedMoviesResponse: MutableStateFlow<DataState<MoviesResponse>>
+        get() = _topRatedMoviesResponse
+
+    fun getTopRatedMovies(page: Int) {
+        viewModelScope.launch {
+            getTopRatedMoviesUseCase(page)
+                .onEach {
+                    _topRatedMoviesResponse.value = it
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    private val _upcomingMoviesResponse =
+        MutableStateFlow<DataState<MoviesResponse>>(DataState.Idle)
+    val upcomingMoviesResponse: MutableStateFlow<DataState<MoviesResponse>>
+        get() = _upcomingMoviesResponse
+
+    fun getUpcomingMovies(page: Int) {
+        viewModelScope.launch {
+            getUpcomingMoviesUseCase(page)
+                .onEach {
+                    _upcomingMoviesResponse.value = it
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    private val _nowPlayingMoviesResponse =
+        MutableStateFlow<DataState<MoviesResponse>>(DataState.Idle)
+    val nowPlayingMoviesResponse: MutableStateFlow<DataState<MoviesResponse>>
+        get() = _nowPlayingMoviesResponse
+
+    fun getNowPlayingMovies(page: Int) {
+        viewModelScope.launch {
+            getNowPlayingMoviesUseCase(page)
+                .onEach {
+                    _nowPlayingMoviesResponse.value = it
+                }.launchIn(viewModelScope)
+        }
+    }
 }

@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.devm7mdibrahim.presentation.utils.Constants.IMAGE_PATH
 
 
 fun View.toVisible() {
@@ -23,7 +24,13 @@ fun ImageView.loadImageFromUrl(url: String?) {
     circularProgressDrawable.strokeWidth = 5f
     circularProgressDrawable.centerRadius = 30f
     circularProgressDrawable.start()
+
+    var newUrl = url
+    if (url != null && url.startsWith("https://").not() && url.startsWith("http://").not()) {
+        newUrl = IMAGE_PATH + url
+    }
+
     Glide.with(this.context)
-        .load(url).placeholder(circularProgressDrawable)
+        .load(newUrl).placeholder(circularProgressDrawable)
         .into(this)
 }

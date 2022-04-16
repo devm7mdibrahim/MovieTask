@@ -1,1 +1,6 @@
-<resources></resources>
+<resources>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="top_rated_movies">Top rated Movies</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="now_playing_movies">Now playing Movies</string>
+</resources>
