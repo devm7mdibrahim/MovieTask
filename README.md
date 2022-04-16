@@ -13,3 +13,7 @@
 - Retrofit and Okhttp for network
 - ViewBinding for binding views
 - Navigation-Component for navigation between screens
+
+# screenshots
+<img src="/screenshots/all_movies.jpg" align="center" width="50%"/>
+<img src="/screenshots/movie_details.jpg" align="center" width="50%"/>
