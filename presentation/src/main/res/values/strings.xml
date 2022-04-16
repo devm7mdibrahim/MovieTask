@@ -3,4 +3,10 @@
     <string name="top_rated_movies">Top rated Movies</string>
     <string name="upcoming_movies">Upcoming Movies</string>
     <string name="now_playing_movies">Now playing Movies</string>
+
+    <string name="error_timeout">Timeout, please try again</string>
+    <string name="error_unknown">Something went wrong, please try again</string>
+    <string name="error_server">Something went wrong, please try again later</string>
+    <string name="error_not_found">Something went wrong, please try again later</string>
+    <string name="error_connection">No internet connection</string>
 </resources>

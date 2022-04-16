@@ -1,7 +1,9 @@
 package com.devm7mdibrahim.presentation.utils
 
+import android.content.Context
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.devm7mdibrahim.presentation.utils.Constants.IMAGE_PATH
@@ -33,4 +35,8 @@ fun ImageView.loadImageFromUrl(url: String?) {
     Glide.with(this.context)
         .load(newUrl).placeholder(circularProgressDrawable)
         .into(this)
+}
+
+fun Int.showToast(context: Context) {
+    Toast.makeText(context, context.getString(this), Toast.LENGTH_SHORT).show()
 }

@@ -8,7 +8,9 @@ import com.devm7mdibrahim.domain.model.MovieDetailsResponse
 import com.devm7mdibrahim.domain.utils.DataState
 import com.devm7mdibrahim.presentation.base.BaseFragment
 import com.devm7mdibrahim.presentation.databinding.FragmentMovieDetailsBinding
+import com.devm7mdibrahim.presentation.utils.getCommonException
 import com.devm7mdibrahim.presentation.utils.loadImageFromUrl
+import com.devm7mdibrahim.presentation.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,6 +41,10 @@ class MovieDetailsFragment :
                 when (it) {
                     is DataState.Success -> {
                         renderData(it.data)
+                    }
+
+                    is DataState.Error -> {
+                        it.throwable.getCommonException().showToast(requireContext())
                     }
                 }
             }

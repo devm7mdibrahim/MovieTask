@@ -1,6 +1,8 @@
 package com.devm7mdibrahim.presentation.ui.movies
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -9,8 +11,7 @@ import com.devm7mdibrahim.domain.model.MovieItem
 import com.devm7mdibrahim.domain.utils.DataState
 import com.devm7mdibrahim.presentation.base.BaseFragment
 import com.devm7mdibrahim.presentation.databinding.FragmentMoviesBinding
-import com.devm7mdibrahim.presentation.utils.toGone
-import com.devm7mdibrahim.presentation.utils.toVisible
+import com.devm7mdibrahim.presentation.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -80,6 +81,7 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
         viewModel.getNowPlayingMovies(page = 1)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun getMoviesListener() {
         lifecycleScope.launchWhenStarted {
             viewModel.popularMoviesResponse.collect {
@@ -104,6 +106,8 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
                         binding.shimmerPopularMovies.stopShimmer()
                         binding.rvPopularMovies.toGone()
                         binding.tvPopularMoviesTitle.toGone()
+
+                        it.throwable.getCommonException().showToast(requireContext())
                     }
                     is DataState.Idle -> {
                         binding.shimmerPopularMovies.toGone()
@@ -133,6 +137,8 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
                         binding.shimmerTopRatedMovies.stopShimmer()
                         binding.rvTopRatedMovies.toGone()
                         binding.rvTopRatedMovies.toGone()
+
+                        it.throwable.getCommonException().showToast(requireContext())
                     }
                     is DataState.Idle -> {
                         binding.shimmerTopRatedMovies.toGone()
@@ -163,6 +169,8 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
                         binding.shimmerUpcomingMovies.stopShimmer()
                         binding.rvUpcomingMovies.toGone()
                         binding.rvUpcomingMovies.toGone()
+
+                        it.throwable.getCommonException().showToast(requireContext())
                     }
 
                     is DataState.Idle -> {
@@ -194,6 +202,8 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
                         binding.shimmerNowPlayingMovies.stopShimmer()
                         binding.rvNowPlayingMovies.toGone()
                         binding.rvNowPlayingMovies.toGone()
+
+                        it.throwable.getCommonException().showToast(requireContext())
                     }
                     is DataState.Idle -> {
                         binding.shimmerNowPlayingMovies.toGone()
@@ -202,4 +212,6 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
             }
         }
     }
+
+
 }
